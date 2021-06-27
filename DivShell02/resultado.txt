@@ -1,3 +1,3 @@
-Parâmetros enviados: 2.0 e 2.0
-Operacao: multiplicacao
-Resultado : 4.0
+Parâmetros enviados: 6.0 e 6.0
+Operacao: soma
+Resultado : 12.0

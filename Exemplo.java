@@ -7,73 +7,40 @@ import java.util.Scanner;
 public class Exemplo {    
 
    public static void main (String args[]){    
+   
+   	
+   	double input1 = Double.parseDouble(args[0]);
+   	double input2 = Double.parseDouble(args[1]);
+   	int input3 = Integer.parseInt(args[2]);
+   	
+   	
+   	double num1 = input1;
+   	double num2 = input2;
+   	int op = input3;
+   	
+   	int operacao;
 
-       short operacao;
+           operacao = op;
 
-       double num1, num2;    
 
-       Scanner input = new Scanner(System.in);
+	    System.out.println("RESULTADO: O resultado da operacao " + getNomeOperacao(op) + " eh " + Calcular(operacao, num1, num2) +"\n");
+	    escreverTexto("Parâmetros enviados: " + num1 + " e " + num2 + "\n" + "Operacao: " + getNomeOperacao(op) + "\n" + "Resultado : " + 		    Calcular(operacao, num1, num2) + "\n");
+	    
 
-       do {
+    
+        
+        
 
-            System.out.println("Digite a operacao desejada:");
-
-            System.out.println("  1. Soma");      
-
-            System.out.println("  2. Subtracao");      
-
-            System.out.println("  3. Multiplicacao");      
-
-            System.out.println("  4. Divisao");      
-
-            System.out.println("  0. Sair");
-
-            System.out.print("Operacao: ");
-
-            operacao = input.nextShort();
-
-            if (operacao == 0) {
-
-             System.out.println("Bye bye!");
-
-             break;
-
-            }
-
-            if (!OperacaoExiste(operacao)) {
-
-             continue;
-
-            }
-
-            System.out.print("Digite o primeiro valor: ");
-
-            num1 = input.nextDouble();
-
-            System.out.print("Digite o segundo valor: ");
-
-            num2 = input.nextDouble();
-
-            if (!ValidaDadosDeEntrada(operacao, num1, num2)) {
-
-             continue;
-
-            }
-
-            System.out.println("RESULTADO: O resultado da operacao " + getNomeOperacao(operacao) + " eh " + Calcular(operacao, num1, num2) +"\n");
-	    escreverTexto("Parâmetros enviados: " + num1 + " e " + num2 + "\n" + "Operacao: " + getNomeOperacao(operacao) + "\n" + "Resultado : " + Calcular(operacao, num1, num2) + "\n");
-
-       } while (operacao != 0);
-       
+ 
      
 
    }
 
-   static double Calcular (short operacao, double num1, double num2) {
+   static double Calcular (int op, double num1, double num2) {
 
     double resultado = 0;
 
-    switch (operacao) {
+    switch (op) {
 
      case 1: //soma
 
@@ -116,7 +83,11 @@ public class Exemplo {
  	
  	){
  	
+ 	  
+ 	
    	escrita.append(escreverTexto);
+   	
+   	
 	
 	}catch(IOException e){
 	e.printStackTrace();
@@ -124,41 +95,37 @@ public class Exemplo {
    
    }
 
-   static boolean OperacaoExiste (short operacao) {
 
-       boolean retorno = true;
-
-    if (operacao > 4) {
-
-        System.out.println("ERRO: Operacao escolhida eh invalida.\n");
-
-        retorno = false;
-
-       }
-
-    return retorno;
-
+	 public static void escreverTextoSeExistir(String escreverTexto){
+   
+   try(
+	
+	FileWriter criandoArquivo = new FileWriter("DivShell02/resultado.txt",true);
+	BufferedWriter buffer = new BufferedWriter(criandoArquivo);
+	PrintWriter escrita = new PrintWriter(buffer);   
+ 	
+ 	){
+ 	
+ 	
+ 	
+ 	  
+ 	
+   	escrita.append(escreverTexto);
+   	
+   	
+	
+	}catch(IOException e){
+	e.printStackTrace();
+	}
+   
    }
+  
 
-   static boolean ValidaDadosDeEntrada (short operacao, double num1, double num2) {
+  
 
-    boolean retorno = true;  
+   static String getNomeOperacao (int op) {
 
-    if (operacao == 4 & num2 == 0) {
-
-         System.out.println("ERRO: Divisor nao pode ser zero.\n");
-
-         retorno = false;
-
-       }
-
-    return retorno;
-
-   }
-
-   static String getNomeOperacao (short operacao) {
-
-    switch (operacao) {
+    switch (op) {
 
  case 1:
 
