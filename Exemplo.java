@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;    
@@ -24,7 +25,8 @@ public class Exemplo {
 
 
 	    System.out.println("RESULTADO: O resultado da operacao " + getNomeOperacao(op) + " eh " + Calcular(operacao, num1, num2) +"\n");
-	    escreverTexto("Parâmetros enviados: " + num1 + " e " + num2 + "\n" + "Operacao: " + getNomeOperacao(op) + "\n" + "Resultado : " + 		    Calcular(operacao, num1, num2) + "\n");
+	   escreverTexto("Parâmetros enviados: " + num1 + " e " + num2 + "\n" + "Operacao: " + getNomeOperacao(op) + "\n" + "Resultado : " + 		    Calcular(operacao, num1, num2) + "\n");
+	 
 	    
 
     
@@ -86,7 +88,7 @@ public class Exemplo {
  	  
  	
    	escrita.append(escreverTexto);
-   	
+   	escrita.close();
    	
 	
 	}catch(IOException e){
@@ -96,28 +98,29 @@ public class Exemplo {
    }
 
 
-	 public static void escreverTextoSeExistir(String escreverTexto){
+	 public static void escreverTextoSeExistir(String texto){
    
-   try(
-	
-	FileWriter criandoArquivo = new FileWriter("DivShell02/resultado.txt",true);
-	BufferedWriter buffer = new BufferedWriter(criandoArquivo);
-	PrintWriter escrita = new PrintWriter(buffer);   
- 	
- 	){
- 	
- 	
- 	
- 	  
- 	
-   	escrita.append(escreverTexto);
-   	
-   	
-	
-	}catch(IOException e){
-	e.printStackTrace();
-	}
+ 	FileWriter fw = null;
+ 
+ 	boolean exists = (new File("DivShell02/resultado.txt")).exists();
+ 	if(exists){
+ 	  System.out.println("O arquivo existe!");
+ 	 try{
+ 	 
+ 	 fw = new FileWriter("DivShell02/resultado.txt",true);
+ 	 fw.write(texto);
+ 	 }catch(IOException e){
+ 	 
+ 	 System.out.println(e);
+ 	 }
    
+   }else{
+   
+   
+   escreverTexto(texto);
+   System.out.println("entrou aqui!");
+   
+   }
    }
   
 
