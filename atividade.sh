@@ -14,8 +14,8 @@ echo "Operação"
 
 read op   
 
-javac Exemplo.java
-java Exemplo $n1 $n2 $op
+javac exemplo.java
+java exemplo $n1 $n2 $op
 mv /home/faran/as/DivShell01/resultado.txt /home/faran/as/DivShell02
 else
 echo "diretorio não existe "
